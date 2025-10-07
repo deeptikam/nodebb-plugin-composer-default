@@ -323,3 +323,20 @@ async function cidFromQuery(query) {
 	}
 	return null;
 }
+
+plugin.filterComposerPush = async function (hookData) {
+	if (hookData.data.anonymous) {
+		hookData.data.anonymous = true;
+	}
+	return hookData;
+};
+
+plugin.filterPostCreate = async function (hookData) {
+	if (hookData.data.anonymous) {
+		hookData.post.anonymous = true;
+		hookData.post.uid = 0;
+		hookData.post.handle = 'Anonymous';
+	}
+	return hookData;
+};
+

@@ -7,7 +7,9 @@
 		{ "hook": "filter:config.get", "method": "appendConfig" },
 		{ "hook": "filter:composer.build", "method": "filterComposerBuild" },
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
-		{ "hook": "filter:meta.getLinkTags", "method": "addPrefetchTags" }
+		{ "hook": "filter:meta.getLinkTags", "method": "addPrefetchTags" },
+		{ "hook": "filter:composer.push", "method": "filterComposerPush" },
+		{ "hook": "filter:post.create", "method": "filterPostCreate" }
 	],
 	"scss": [
 		"./static/scss/composer.scss"

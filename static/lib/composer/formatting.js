@@ -190,5 +190,27 @@ define('composer/formatting', [
 		});
 	};
 
+	require(['composer'], function (composer) {
+		$(window).on('action:composer.loaded', function (ev, data) {
+			var uuid = data.post_uuid;
+			var composerData = data.composerData || {};
+			var postContainer = $('#cmp-' + uuid);
+
+			var checkbox = postContainer.find('#post-anonymous');
+			if (composerData.anonymous) {
+				checkbox.prop('checked', true);
+			}
+
+			checkbox.on('change', function () {
+				var isChecked = $(this).is(':checked');
+
+				composer.getComposerData(uuid, function (cd) {
+					cd.anonymous = isChecked;
+				});
+			});
+		});
+	});
+
+
 	return formatting;
 });
