@@ -45,6 +45,12 @@
 		</li>
 		{{{ end }}}
 
+		<li title="Post Anonymously">
+			<input type="checkbox" id="post-anonymous" name="post-anonymous" />
+			<span>Post Anonymously</span>
+		</li>
+
+
 		{{{ if canUploadFile }}}
 		<li title="[[modules:composer.upload-file]]">
 			<button data-format="upload" class="file-upload-btn btn btn-sm btn-link text-reset" aria-label="[[modules:composer.upload-file]]">
