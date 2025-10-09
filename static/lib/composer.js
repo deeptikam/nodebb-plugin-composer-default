@@ -727,6 +727,8 @@ define('composer', [
 		};
 		let method = 'post';
 		let route = '';
+		// also read anonymous checkbox state at submit time
+		const anonymousChecked = postContainer.find('#post-anonymous').is(':checked');
 
 		if (action === 'topics.post') {
 			route = '/topics';
@@ -740,6 +742,8 @@ define('composer', [
 				tags: tags.getTags(post_uuid),
 				thumbs: postData.thumbs || [],
 				timestamp: scheduler.getTimestamp(),
+				// propagate anonymous selection to server
+				anonymous: !!postData.anonymous || !!anonymousChecked,
 			};
 		} else if (action === 'posts.reply') {
 			route = `/topics/${postData.tid}`;
@@ -749,6 +753,8 @@ define('composer', [
 				handle: handleEl ? handleEl.val() : undefined,
 				content: bodyEl.val(),
 				toPid: postData.toPid,
+				// propagate anonymous selection to server
+				anonymous: !!postData.anonymous || !!anonymousChecked,
 			};
 		} else if (action === 'posts.edit') {
 			method = 'put';
